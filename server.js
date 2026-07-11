@@ -80,7 +80,8 @@ Deno.serve(async (_req) => {
     if (_req.method === "POST" && pathname === "/RESET") {
         wordHistories.splice(0);
         wordHistories[0] = "しりとり";
-        return new Response("しりとり");
+        location.reload();
+        return new Response(wordHistories[0]);
     }
 
     // ./public以下のファイルを公開
