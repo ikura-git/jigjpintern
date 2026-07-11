@@ -54,7 +54,10 @@
         const errorJson = await response.text();
         const errorObj = JSON.parse(errorJson);
         alert(errorObj["errorMessage"]);
-        return;
+        if (errorCode === 10001) {
+          return;
+        }
+
       }
 
       const previousWord = await response.text();
