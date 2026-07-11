@@ -16,7 +16,7 @@
   <p id="previousWord"></p>
   <!-- 次の文字を入力するフォーム -->
   <input id="nextWordInput" type="text" />
-  <button id="nextWordSendButton">送信</button>
+  <button id="nextWordSendButton">送信</button><button id="resetButton">リセット</button>
 
   <!-- JavaScriptを実行 -->
   <script>
@@ -69,6 +69,16 @@
       paragraph.innerHTML = `前の単語: ${previousWord}`;
       // inputタグの中身を消去する
       nextWordInput.value = "";
+    }
+
+    // リセットボタンの押下時に実行
+    document.querySelector("#nextWordSendButton").onclick = async (event) => {
+      "/RESET",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+      }
+      location.reload();
     }
   </script>
 </body>
