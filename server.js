@@ -61,6 +61,11 @@ Deno.serve(async (_req) => {
         return new Response(previousWord);
     }
 
+    // POST /reset: リセットする
+    if (_req.method === "POST" && pathname === "/RESET") {
+        previousWord = "しりとり";
+    }
+
     // ./public以下のファイルを公開
     return serveDir(
         _req,
