@@ -80,6 +80,7 @@ Deno.serve(async (_req) => {
     if (_req.method === "POST" && pathname === "/RESET") {
         wordHistories.splice(0);
         wordHistories.unshift("しりとり");
+        console.log(wordHistories);
         return new Response(wordHistories[0]);
     }
 
