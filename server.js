@@ -2,7 +2,7 @@
 import { serveDir } from "jsr:@std/http/file-server";
 
 // 直前の単語を保持しておく
-let previousWord = "しりとり";
+let wordHistories = ["しりとり"];
 
 // localhostにDenoのHTTPサーバーを展開
 Deno.serve(async (_req) => {
@@ -13,7 +13,7 @@ Deno.serve(async (_req) => {
 
     // GET /shiritori: 直前の単語を返す
     if (_req.method === "GET" && pathname === "/shiritori") {
-        return new Response(previousWord);
+        return new Response(wordHistories[0]);
     }
 
     // POST /shiritori: 次の単語を受け取って保存する
@@ -38,9 +38,9 @@ Deno.serve(async (_req) => {
                 },
             );
         } // previousWordの末尾とnextWordの頭が同一か確認
-        else if (previousWord.slice(-1) === nextWord.slice(0, 1)) {
+        else if (wordHistories[0].slice(-1) === nextWord.slice(0, 1)) {
             // 同一であれば、previousWordを更新
-            previousWord = nextWord;
+            wordHistories.unshift(nextWord);
         } // 同一でない単語の入力時に、エラーを返す
         else {
             return new Response(
@@ -58,13 +58,14 @@ Deno.serve(async (_req) => {
         }
 
         // 現在の単語を返す
-        return new Response(previousWord);
+        return new Response(wordHistories[0]);
     }
 
     // POST /reset: リセットする
     if (_req.method === "POST" && pathname === "/RESET") {
-        previousWord = "しりとり";
-        return new Response(previousWord);
+        wordHistories.splice(0);
+        wordHistories[0] = "しりとり";
+        return new Response(wordHistories[0]);
     }
 
     // ./public以下のファイルを公開
