@@ -53,7 +53,7 @@
       if (response.status !== 200) {
         const errorJson = await response.text();
         const errorObj = JSON.parse(errorJson);
-        if (errorObj["errorCode"] === "10002" || errorObj["errorCode"] === "10002") {
+        if (errorObj["errorCode"] === "10002" || errorObj["errorCode"] === "10003") {
           document.getElementById('nextWordSendButton').remove();
         }
         alert(errorObj["errorMessage"]);
