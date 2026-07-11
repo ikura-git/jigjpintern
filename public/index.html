@@ -55,14 +55,13 @@
         const errorObj = JSON.parse(errorJson);
         if ("errorCode" === "10001") {
           alert(errorObj["errorMessage"]);
-          return;
+
         }
         if ("errorCode" === "10002") {
           document.getElementById('nextWordSendButton').remove();
           alert(errorObj["errorMessage"]);
-          return;
         }
-
+        return;
 
       }
 
