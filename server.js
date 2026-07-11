@@ -23,6 +23,23 @@ Deno.serve(async (_req) => {
         // JSONの中からnextWordを取得
         const nextWord = requestJson["nextWord"];
 
+        //これまでに使用されていたら
+        for (i = 0; i < wordHistories.length; i++) {
+            if (nextWord == wordHistories[i]) {
+                return new Response(
+                    JSON.stringify({
+                        "errorMessage": "これまでに使用されています",
+                        "errorCode": "10003",
+                    }),
+                    {
+                        status: 400,
+                        headers: {
+                            "Content-Type": "application/json; charset=utf-8",
+                        },
+                    },
+                );
+            }
+        }
         //末尾が「ん」だった場合
         if (nextWord.slice(-1) === "ん") {
             return new Response(
