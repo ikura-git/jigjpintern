@@ -55,7 +55,7 @@
         const errorObj = JSON.parse(errorJson);
         alert(errorObj["errorMessage"]);
         if (errorCode === 10002) {
-          id = "nextWordSendButton".remove();
+          document.getElementById('nextWordSendButton').remove();
 
         }
         return;
