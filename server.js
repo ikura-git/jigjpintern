@@ -23,8 +23,21 @@ Deno.serve(async (_req) => {
         // JSONの中からnextWordを取得
         const nextWord = requestJson["nextWord"];
 
-        // previousWordの末尾とnextWordの先頭が同一か確認
-        if (previousWord.slice(-1) === nextWord.slice(0, 1)) {
+        // previousWordの末尾とnextWordの頭が同一か確認
+        if (previousWord.slice(-1) == "ん") {
+            return new Response(
+                JSON.stringify({
+                    "errorMessage": "末尾が「ん」です",
+                    "errorCode": "10002",
+                }),
+                {
+                    status: 500,
+                    headers: {
+                        "Content-Type": "application/json; charset=utf-8",
+                    },
+                },
+            );
+        } else if (previousWord.slice(-1) === nextWord.slice(0, 1)) {
             // 同一であれば、previousWordを更新
             previousWord = nextWord;
         } // 同一でない単語の入力時に、エラーを返す
