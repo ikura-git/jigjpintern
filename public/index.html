@@ -73,12 +73,13 @@
 
     // リセットボタンの押下時に実行
     document.querySelector("#resetButton").onclick = async (event) => {
-      "/RESET",
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-      }
-      //location.reload();
+      const response = await fetch(
+        "/RESET",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" }
+        });
+      location.reload();
     }
   </script>
 </body>
