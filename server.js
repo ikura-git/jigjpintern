@@ -101,11 +101,11 @@ Deno.serve(async (_req) => {
 
     // POST /reset: 履歴閲覧
     if (_req.method === "POST" && pathname === "/history") {
-        let historyWord = [];
+        /*let historyWord = [];
         for (let i = 0; i < wordHistories.length; i++) {
             historyWord += "<li>" + (i - 1) + wordHistories[i] + "</li>";
-        }
-        return new Response(historyWord.join(""));
+        }*/
+        return new Response(wordHistories);
     }
 
     // ./public以下のファイルを公開
