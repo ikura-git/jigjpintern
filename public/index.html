@@ -18,6 +18,8 @@
   <input id="nextWordInput" type="text" />
   <button id="nextWordSendButton">送信</button><button id="resetButton">リセット</button>
 
+  <button id="historyButton">履歴を見る</button>
+
   <!-- JavaScriptを実行 -->
   <script>
     window.onload = async (event) => {
@@ -83,6 +85,18 @@
           headers: { "Content-Type": "application/json" }
         });
       location.reload();
+    }
+
+    document.querySelector("#historyButton").onclick = async (event) => {
+      const history = await fetch(
+        "/shiritori",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" }
+        }
+      );
+      alert(history);
+
     }
   </script>
 </body>
