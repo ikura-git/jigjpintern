@@ -39,7 +39,7 @@ Deno.serve(async (_req) => {
             );
         }
         //ひらがな以外があれば
-        if (!nextword.includes(/^[\u3040-\u309F]+$/)) {
+        if (/\P{sc=Hira}/u.nextword) {
             return new Response(
                 JSON.stringify({
                     "errorMessage": "ひらがな以外の文字が含まれています",
