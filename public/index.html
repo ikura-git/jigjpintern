@@ -89,8 +89,6 @@
 
     document.querySelector("#historyButton").onclick = async (event) => {
       const history = await fetch("/history", { method: "POST" });
-      // responseの中からレスポンスのテキストデータを取得
-      console.log(history);
       const historyWord = await history.text();
       alert(historyWord);
 
