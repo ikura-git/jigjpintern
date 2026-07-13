@@ -89,7 +89,7 @@
 
     document.querySelector("#historyButton").onclick = async (event) => {
       const history = await fetch(
-        "/shiritori",
+        "/history",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" }
