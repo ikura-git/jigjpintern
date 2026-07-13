@@ -101,6 +101,7 @@ Deno.serve(async (_req) => {
 
     // POST /reset: リセットする
     if (_req.method === "POST" && pathname === "/history") {
+        let historyWord = [];
         for (let i = 0; i < wordHistories.length; i++) {
             historyWord += "<li>" + i - 1 + wordHistories[i] + "</li>"; // = ではなく += を使う
         }
