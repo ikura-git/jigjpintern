@@ -88,15 +88,10 @@
     }
 
     document.querySelector("#historyButton").onclick = async (event) => {
-      const history = await fetch(
-        "/history",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ wordHistories })
-        }
-      );
-      alert(history);
+      const history = await fetch("/history", { method: "POST" });
+      // responseの中からレスポンスのテキストデータを取得
+      const historyWord = await history.text();
+      alert(historyWord);
 
     }
   </script>
