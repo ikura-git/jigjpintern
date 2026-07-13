@@ -38,6 +38,21 @@ Deno.serve(async (_req) => {
                 },
             );
         }
+        //ひらがな以外があれば
+        if (!nextword.includes(/^[\u3040-\u309F]+$/)) {
+            return new Response(
+                JSON.stringify({
+                    "errorMessage": "ひらがな以外の文字が含まれています",
+                    "errorCode": "10001",
+                }),
+                {
+                    status: 400,
+                    headers: {
+                        "Content-Type": "application/json; charset=utf-8",
+                    },
+                },
+            );
+        }
         //末尾が「ん」だった場合
         if (nextWord.slice(-1) === "ん") {
             return new Response(
