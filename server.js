@@ -39,7 +39,7 @@ Deno.serve(async (_req) => {
             );
         }
         //ひらがな以外があれば
-        if (/\P{sc=Hira}/u.nextword) {
+        if (/\P{sc=Hira}/u.nextWord) {
             return new Response(
                 JSON.stringify({
                     "errorMessage": "ひらがな以外の文字が含まれています",
