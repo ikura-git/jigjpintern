@@ -27,7 +27,8 @@ Deno.serve(async (_req) => {
         if (wordHistories.includes(nextWord)) {
             return new Response(
                 JSON.stringify({
-                    "errorMessage": "これまでに使用されています",
+                    "errorMessage":
+                        "これまでに使用されています。ゲームを終了します",
                     "errorCode": "10003",
                 }),
                 {
@@ -57,7 +58,7 @@ Deno.serve(async (_req) => {
         if (nextWord.slice(-1) === "ん") {
             return new Response(
                 JSON.stringify({
-                    "errorMessage": "末尾が「ん」です",
+                    "errorMessage": "末尾が「ん」です。ゲームを終了します",
                     "errorCode": "10002",
                 }),
                 {
@@ -75,7 +76,7 @@ Deno.serve(async (_req) => {
         else {
             return new Response(
                 JSON.stringify({
-                    "errorMessage": "前の単語に続いていません",
+                    "errorMessage": "前の単語に続いていません。",
                     "errorCode": "10001",
                 }),
                 {
