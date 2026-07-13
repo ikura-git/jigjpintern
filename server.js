@@ -99,6 +99,11 @@ Deno.serve(async (_req) => {
         return new Response(wordHistories[0]);
     }
 
+    // POST /reset: リセットする
+    if (_req.method === "POST" && pathname === "/history") {
+        return new Response(wordHistories);
+    }
+
     // ./public以下のファイルを公開
     return serveDir(
         _req,
