@@ -99,11 +99,11 @@ Deno.serve(async (_req) => {
         return new Response(wordHistories[0]);
     }
 
-    // POST /reset: リセットする
+    // POST /reset: 履歴閲覧
     if (_req.method === "POST" && pathname === "/history") {
         let historyWord = [];
         for (let i = 0; i < wordHistories.length; i++) {
-            historyWord += "<li>" + i - 1 + wordHistories[i] + "</li>"; // = ではなく += を使う
+            historyWord += "<li>" + (i - 1) + wordHistories[i] + "</li>";
         }
         return new Response(historyWord.join(""));
     }
