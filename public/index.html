@@ -54,6 +54,8 @@
         const errorJson = await response.text();
         const errorObj = JSON.parse(errorJson);
         if (errorObj["errorCode"] === "10002" || errorObj["errorCode"] === "10003") {
+          const paragraph = document.querySelector("#previousWord");
+          paragraph.innerHTML = `ゲームは終了しました`;
           document.getElementById('nextWordInput').remove();
           document.getElementById('nextWordSendButton').remove();
         }
