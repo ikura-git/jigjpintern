@@ -74,8 +74,14 @@
       paragraph.innerHTML = `前の単語: ${previousWord}`;
       // inputタグの中身を消去する
       nextWordInput.value = "";
-
-      var history = await fetch("/history", { method: "POST" });
+      //履歴の表示
+      var history = await fetch(
+        "/history",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify()
+        });
       document.getElementById("historyWord").innerHTML = history;
     }
 
