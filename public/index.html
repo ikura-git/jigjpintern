@@ -82,6 +82,7 @@
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify()
         });
+      historyWord = await history.text();
       document.getElementById("historyWord").innerHTML = history;
     }
 
@@ -95,13 +96,7 @@
         });
       location.reload();
     }
-    //履歴ボタンを押したときに実行
-    document.querySelector("#historyButton").onclick = async (event) => {
-      const history = await fetch("/history", { method: "POST" });
-      const historyWord = await history.text();
-      alert(historyWord);
 
-    }
   </script>
 </body>
 
