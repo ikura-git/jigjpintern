@@ -105,7 +105,7 @@ Deno.serve(async (_req) => {
         for (let i = 0; i < wordHistories.length; i++) {
             history += "<li>" + wordHistories[i] + "</li>";
         }
-        document.getElementById("historyWord").innerHTML = history.join("");
+        return new Response(JSON.stringify(history));
     }
 
     // ./public以下のファイルを公開
