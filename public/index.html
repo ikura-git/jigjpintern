@@ -18,7 +18,7 @@
   <input id="nextWordInput" type="text" />
   <button id="nextWordSendButton">送信</button><button id="resetButton">リセット</button>
 
-  <button id="historyButton">履歴を見る</button>
+  <input id="historyWord" type="text" />
 
   <!-- JavaScriptを実行 -->
   <script>
@@ -74,6 +74,9 @@
       paragraph.innerHTML = `前の単語: ${previousWord}`;
       // inputタグの中身を消去する
       nextWordInput.value = "";
+
+      var history = await fetch("/history", { method: "POST" });
+      document.getElementById("historyWord").innerHTML = history;
     }
 
     // リセットボタンの押下時に実行
@@ -86,7 +89,7 @@
         });
       location.reload();
     }
-
+    //履歴ボタンを押したときに実行
     document.querySelector("#historyButton").onclick = async (event) => {
       const history = await fetch("/history", { method: "POST" });
       const historyWord = await history.text();
